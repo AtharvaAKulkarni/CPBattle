@@ -12,7 +12,7 @@ public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry){
         registry.addEndpoint("/ws-connect")
-                .setAllowedOrigins("http://localhost:5173")
+                .setAllowedOrigins("https://cpbattle-frontend.onrender.com")
                 .withSockJS();
     }
     @Override
