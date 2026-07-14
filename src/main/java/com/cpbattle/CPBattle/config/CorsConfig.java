@@ -1,4 +1,4 @@
-package com.cpbattle.CPBattle.controller;
+package com.cpbattle.CPBattle.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class CorsConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedOrigins(List.of("https://cpbattle-frontend.onrender.com"));
 
         configuration.setAllowedMethods(List.of(
                 "GET",
