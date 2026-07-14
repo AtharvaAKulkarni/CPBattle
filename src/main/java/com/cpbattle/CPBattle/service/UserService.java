@@ -1,10 +1,12 @@
 package com.cpbattle.CPBattle.service;
 
+import com.cpbattle.CPBattle.DTO.LeaderboardDTO;
 import com.cpbattle.CPBattle.entity.User;
 import com.cpbattle.CPBattle.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,26 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    public void updateScore(List<LeaderboardDTO> leaderboard) {
+        if(leaderboard.getFirst().getScore()!=0){
+            User winner= userRepository.findByUsername(leaderboard.getFirst().getUsername());
+            winner.setBattlesWon(winner.getBattlesWon()+1);
+            userRepository.save(winner);
+            for(LeaderboardDTO user:leaderboard){
+                if(user.equals(leaderboard.getFirst())) continue;
+                User u=userRepository.findByUsername(user.getUsername());
+                u.setBattlesLost(u.getBattlesLost()+1);
+                userRepository.save(u);
+            }
+            return;
+        }
+        for(LeaderboardDTO user:leaderboard) {
+            User u = userRepository.findByUsername(user.getUsername());
+            u.setBattlesTied(u.getBattlesTied() + 1);
+            userRepository.save(u);
+        }
+    }
 
     public ResponseEntity<?> getFriends(String username) {
         User user=userRepository.findByUsername(username);
@@ -35,5 +57,10 @@ public class UserService {
             return ResponseEntity.ok("Friend Added");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Could not add friend");
+    }
+
+    public User getUser(){
+        String username= SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByUsername(username);
     }
 }

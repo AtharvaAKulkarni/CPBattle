@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PublicController {
     @Autowired
     AuthService authService;  //IMPORT AUTH SERVICE
-//    @Autowired
-//    QuestionService questionService;
+
     // SIGN UP USER
     @PostMapping("/sign-up")
     public ResponseEntity<?> signUp(@RequestBody User user) {

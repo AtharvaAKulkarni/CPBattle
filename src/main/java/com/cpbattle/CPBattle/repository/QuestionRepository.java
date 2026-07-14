@@ -1,14 +1,15 @@
 package com.cpbattle.CPBattle.repository;
 
 import com.cpbattle.CPBattle.entity.Question;
-import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.repository.Aggregation;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-public interface QuestionRepository extends MongoRepository<Question, ObjectId> {
-    @Aggregation(pipeline = {
-            "{$match:{rating:?0}}",
-            "{$sample:{size:1}}"
-    })
+public interface QuestionRepository extends JpaRepository<Question, Integer> {
+    @Query(value = """
+            SELECT * FROM question
+            WHERE rating= :rating
+            ORDER BY RANDOM()
+            LIMIT 1
+            """, nativeQuery = true)
     Question findRandomByRating(Integer rating);
 }

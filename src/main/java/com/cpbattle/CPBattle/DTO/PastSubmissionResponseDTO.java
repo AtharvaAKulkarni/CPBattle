@@ -1,4 +1,4 @@
-package com.cpbattle.CPBattle.entity;
+package com.cpbattle.CPBattle.DTO;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,11 +6,14 @@ import lombok.Setter;
 import java.util.List;
 @Getter
 @Setter
-public class PastSubmissionResponse {
+public class PastSubmissionResponseDTO {
     private List<ResponseObject> result;
     @Getter
     @Setter
     public static class ResponseObject{
-        QuestionIdentifier problem;
+        String verdict;
+        Long id;
+        Long creationTimeSeconds;
+        QuestionIdentifierDTO problem;
     }
 }

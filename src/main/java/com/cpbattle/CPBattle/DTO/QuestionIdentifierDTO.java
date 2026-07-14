@@ -1,11 +1,11 @@
-package com.cpbattle.CPBattle.entity;
+package com.cpbattle.CPBattle.DTO;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class QuestionIdentifier {
+public class QuestionIdentifierDTO {
     private Integer contestId;
     private String index;
 }
