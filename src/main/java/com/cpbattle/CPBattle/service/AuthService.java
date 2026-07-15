@@ -48,7 +48,7 @@ public class AuthService {
         }
     }
     public ResponseEntity<?> signup(User user){
-//        System.out.println(user.toString());
+//        System.out.println("SIGN UP REQUEST RECEIVED: "+user.toString());
         String password=user.getPassword();
         user.setUsername(user.getUsername().toLowerCase());
         if(userRepository.existsByUsername(user.getUsername())){
@@ -58,12 +58,15 @@ public class AuthService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Codeforces Handle");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User savedUser=userRepository.save(user);
-        savedUser.setPassword(password);
-        return login(savedUser);
+        userRepository.save(user);
+        User loginUser=new User();
+        loginUser.setUsername(user.getUsername());
+        loginUser.setPassword(password);
+        return login(loginUser);
     }
 
     public ResponseEntity<?> login(User user){
+//        System.out.println("LOG IN REQUEST RECEIVED: "+user.toString());
         user.setUsername(user.getUsername().toLowerCase());
         try{
             Authentication authentication= authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(

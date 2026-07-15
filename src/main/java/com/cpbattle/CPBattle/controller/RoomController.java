@@ -38,7 +38,7 @@ public class RoomController {
     @GetMapping("/{roomId}")
     public ResponseEntity<RoomDTO> getRoom(@PathVariable String roomId) {
         Room room = roomRepository.findByRoomId(roomId);
-        System.out.println("Room request recieved.");
+//        System.out.println("Room request recieved.");
         return ResponseEntity.ok(roomService.toRoomDTO(room));
     }
 
