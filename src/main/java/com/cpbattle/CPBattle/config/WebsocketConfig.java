@@ -6,13 +6,15 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
+import java.util.List;
+
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry){
         registry.addEndpoint("/ws-connect")
-                .setAllowedOrigins("https://cpbattle-frontend.onrender.com")
+                .setAllowedOrigins("https://cpbattle-frontend.onrender.com", "http://localhost:5173")
                 .withSockJS();
     }
     @Override

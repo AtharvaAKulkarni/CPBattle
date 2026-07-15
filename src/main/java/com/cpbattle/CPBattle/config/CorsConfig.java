@@ -16,7 +16,7 @@ public class CorsConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("https://cpbattle-frontend.onrender.com"));
+        configuration.setAllowedOrigins(List.of("https://cpbattle-frontend.onrender.com", "http://localhost:5173"));
 
         configuration.setAllowedMethods(List.of(
                 "GET",

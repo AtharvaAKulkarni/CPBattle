@@ -48,7 +48,9 @@ public class AuthService {
         }
     }
     public ResponseEntity<?> signup(User user){
-        System.out.println(user.toString());
+//        System.out.println(user.toString());
+        String password=user.getPassword();
+        user.setUsername(user.getUsername().toLowerCase());
         if(userRepository.existsByUsername(user.getUsername())){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists");
         }
@@ -57,10 +59,12 @@ public class AuthService {
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser=userRepository.save(user);
+        savedUser.setPassword(password);
         return login(savedUser);
     }
 
     public ResponseEntity<?> login(User user){
+        user.setUsername(user.getUsername().toLowerCase());
         try{
             Authentication authentication= authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     user.getUsername(),

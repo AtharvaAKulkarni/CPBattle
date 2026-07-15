@@ -14,12 +14,5 @@ import java.util.List;
 
 @RestController
 public class ImportController {
-    @Autowired
-    QuestionSyncService questionSyncService;
 
-    @GetMapping("/public/import")
-    public String importQuestions() throws Exception{
-        questionSyncService.syncQuestions();
-        return "Question imported successfully!";
-    }
 }
