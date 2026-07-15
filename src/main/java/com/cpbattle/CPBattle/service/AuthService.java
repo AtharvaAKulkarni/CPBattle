@@ -36,7 +36,7 @@ public class AuthService {
     private boolean verifyUser(User user) throws HttpClientErrorException {
         String url = "https://codeforces.com/api/user.info?handles={handle}&checkHistoricHandles=false";
 //        url=url.replace("<handle>", user.getUsername());
-        System.out.println("Username: "+ user.getUsername());
+//        System.out.println("Username: "+ user.getUsername());
         try{
             VerifyUserResponseDTO userResponse =restTemplate.getForObject(url, VerifyUserResponseDTO.class, user.getUsername());
             return userResponse != null && "OK".equals(userResponse.getStatus());
