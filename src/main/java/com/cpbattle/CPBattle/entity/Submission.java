@@ -3,11 +3,14 @@ package com.cpbattle.CPBattle.entity;
 import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.Instant;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Submission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

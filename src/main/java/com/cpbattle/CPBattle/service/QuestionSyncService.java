@@ -26,7 +26,7 @@ public class QuestionSyncService {
                 CFResponseDTO.class
         );
 
-        List<Question> questions = response.getResultDTO().getProblems();
+        List<Question> questions = response.getResult().getProblems();
 
         repository.saveAll(questions);
     }

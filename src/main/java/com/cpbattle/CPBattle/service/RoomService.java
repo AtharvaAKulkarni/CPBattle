@@ -147,7 +147,9 @@ public class RoomService {
             room.setStatus(RoomStatus.RUNNING);
 
             roomRepository.save(room);
-
+//            System.out.println(room.getQuestions());
+//            System.out.println(room.getQuestions().size());
+//            System.out.println(room.getQuestions().getFirst());
             publish(roomId, new SocketResponseDTO<>(SocketResponseDTO.SocketMessageType.ROOM_UPDATE, toRoomDTO(room)));
 
             return ResponseEntity.ok().build();

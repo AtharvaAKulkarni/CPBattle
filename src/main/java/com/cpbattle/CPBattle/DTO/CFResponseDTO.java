@@ -4,5 +4,5 @@ import lombok.Data;
 @Data
 public class CFResponseDTO {
         private String status;
-        private ResultDTO resultDTO;
+        private ResultDTO result;
 }

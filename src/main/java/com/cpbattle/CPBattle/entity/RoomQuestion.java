@@ -2,10 +2,13 @@ package com.cpbattle.CPBattle.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.Instant;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "room_questions", uniqueConstraints = @UniqueConstraint(columnNames = {"room_id", "question_id"}))
 public class RoomQuestion {
